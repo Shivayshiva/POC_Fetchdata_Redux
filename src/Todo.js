@@ -3,18 +3,24 @@ import "./Todo.css";
 
 const Todo = () => {
   const [state1, setstate1] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchdata = () => {
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((res) => res.json())
-      .then((data) => setstate1(data));
+      .then((data) => {
+        setstate1(data);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
     fetchdata();
   }, []);
 
-  return (
+  return loading ? (
+    <h3>Loading...</h3>
+  ) : (
     <table>
       <tr>
         <th>UserID</th>

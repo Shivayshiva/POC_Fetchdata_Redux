@@ -1,50 +1,29 @@
 import "./App.css";
-import React, { useState } from "react";
-import Todo from "./Todo.js";
-import Users from "./Users.js";
-import Comments from "./Comments.js";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 function App() {
-  const [valset, setValset] = useState("");
-  const updatetodo = () => {
-    setValset("ToDo");
-  };
-  const updateusers = () => {
-    setValset("Users");
-  };
-  const updatecomments = () => {
-    setValset("Comments");
-  };
+  const data = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-  const renderelement = () => {
-    switch (valset) {
-      case "ToDo":
-        return <Todo />;
-      case "Users":
-        return <Users />;
-      case "Comments":
-        return <Comments />;
-      default:
-        return <Todo />;
-    }
-  };
   return (
     <>
       <div clasName="navbar">
-        <div className="navitem" onClick={updatetodo}>
+        <div className="navitem" onClick={() => dispatch({ type: "todo" })}>
           ToDo List
         </div>
-        <div className="navitem" onClick={updateusers}>
+        <div className="navitem" onClick={() => dispatch({ type: "users" })}>
           User List
         </div>
-        <div className="navitem" onClick={updatecomments}>
+        <div className="navitem" onClick={() => dispatch({ type: "comment" })}>
           Comments
         </div>
       </div>
       <br />
       <br />
+      <br />
 
-      {renderelement()}
+      {data}
     </>
   );
 }

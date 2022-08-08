@@ -3,18 +3,24 @@ import "./Comments.css";
 
 const Comment = () => {
   const [state3, setstate3] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchdata = () => {
     fetch("https://jsonplaceholder.typicode.com/comments")
       .then((res) => res.json())
-      .then((data) => setstate3(data));
+      .then((data) => {
+        setstate3(data);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
     fetchdata();
   });
 
-  return (
+  return loading ? (
+    <h3>Loading....</h3>
+  ) : (
     <table>
       <tr>
         <th>UserID</th>

@@ -3,11 +3,15 @@ import "./Users.css";
 
 const Users = () => {
   const [state2, setstate2] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchdata = () => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
-      .then((data) => setstate2(data));
+      .then((data) => {
+        setstate2(data);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -15,7 +19,9 @@ const Users = () => {
     console.log(state2.title);
   }, []);
 
-  return (
+  return loading ? (
+    <h3>Loading...</h3>
+  ) : (
     <table>
       <tr>
         <th>Name</th>
