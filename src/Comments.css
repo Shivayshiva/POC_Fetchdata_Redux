@@ -1,0 +1,26 @@
+table {
+    width: 100%;
+}
+
+table,
+th,
+td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    border-radius: 6px;
+}
+
+
+th {
+    background-color: darkslateblue;
+    text-align: center;
+    padding: 10px;
+    font: 1.5em sans-serif;
+}
+
+td {
+    background-color: #96D4D4;
+    text-align: center;
+    padding: 10px;
+    font: 1em sans-serif;
+}

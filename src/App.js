@@ -1,24 +1,51 @@
-import logo from "./logo.svg";
 import "./App.css";
+import React, { useState } from "react";
+import Todo from "./Todo.js";
+import Users from "./Users.js";
+import Comments from "./Comments.js";
 
 function App() {
+  const [valset, setValset] = useState("");
+  const updatetodo = () => {
+    setValset("ToDo");
+  };
+  const updateusers = () => {
+    setValset("Users");
+  };
+  const updatecomments = () => {
+    setValset("Comments");
+  };
+
+  const renderelement = () => {
+    switch (valset) {
+      case "ToDo":
+        return <Todo />;
+      case "Users":
+        return <Users />;
+      case "Comments":
+        return <Comments />;
+      default:
+        return <Todo />;
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div clasName="navbar">
+        <div className="navitem" onClick={updatetodo}>
+          ToDo List
+        </div>
+        <div className="navitem" onClick={updateusers}>
+          User List
+        </div>
+        <div className="navitem" onClick={updatecomments}>
+          Comments
+        </div>
+      </div>
+      <br />
+      <br />
+
+      {renderelement()}
+    </>
   );
 }
 
